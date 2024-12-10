@@ -1,26 +1,27 @@
 import { Comment } from '../db/model';
 
 export function buildCommentTree(comments: Comment[]) {
-  const parentComments: Comment[] = [];
-  const childrenComments: Comment[] = [];
+  const commentMap = new Map<number, Comment & { childComments?: Comment[] }>();
+
+  for (const comment of comments) {
+    commentMap.set(comment.id, { ...comment, childComments: [] });
+  }
+
+  const combinedComments: Comment[] = [];
 
   for (const comment of comments) {
     if (comment.parentId) {
-      childrenComments.push(comment);
+      // Get the actual parent from map
+      const parent = commentMap.get(comment.parentId);
+
+      // Check if parent still exists
+      if (parent) {
+        parent!.childComments!.push(commentMap.get(comment.id)!);
+      }
     } else {
-      parentComments.push(comment);
+      combinedComments.push(commentMap.get(comment.id)!);
     }
   }
-
-  const combinedComments = parentComments.map((comment) => {
-    const children = childrenComments.filter((c) => c.parentId === comment.id);
-
-    if (children.length > 0) {
-      return { ...comment, childComments: children };
-    } else {
-      return comment;
-    }
-  });
 
   return combinedComments;
 }

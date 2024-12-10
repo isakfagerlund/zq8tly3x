@@ -8,12 +8,14 @@ const commentTestData = [
     content: 'Test comment 1',
     createdAt: new Date(),
     updatedAt: new Date(),
+    childComments: [],
   },
   {
     id: 2,
     content: 'Test comment 2',
     createdAt: new Date(),
     updatedAt: new Date(),
+    childComments: [],
   },
   {
     id: 3,
@@ -21,6 +23,7 @@ const commentTestData = [
     createdAt: new Date(),
     updatedAt: new Date(),
     parentId: 1,
+    childComments: [],
   },
 ] satisfies Comment[];
 

@@ -23,3 +23,7 @@ export async function getCommentsWithChildren() {
 
   return buildCommentTree(comments);
 }
+
+export async function deleteComment(id: number) {
+  await db.comments.delete(id);
+}

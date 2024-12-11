@@ -3,6 +3,9 @@ import { TrashIcon } from 'lucide-react';
 import { deleteComment } from '../../queries/comments';
 import { useState } from 'react';
 import { AddComment } from './AddComment';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime);
 
 export function CommentItem({ comment }: { comment: Comment }) {
   const [showAddNewComment, setShowAddNewComment] = useState(false);
@@ -15,6 +18,7 @@ export function CommentItem({ comment }: { comment: Comment }) {
       >
         <p key={comment.id}>{comment.content}</p>
         <div className="flex gap-2">
+          <p className="text-zinc-400">{dayjs(comment.createdAt).fromNow()}</p>
           <button className="border-zinc-200 rounded p-1 opacity-0 group-hover:opacity-100 transition-opacity group">
             <TrashIcon
               onClick={() => deleteComment(comment.id)}

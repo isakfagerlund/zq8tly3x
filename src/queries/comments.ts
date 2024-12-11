@@ -6,8 +6,7 @@ export async function addComment(content: string, parentId?: number) {
   const newComment = await db.comments.add({
     content,
     createdAt: new Date(),
-    updatedAt: new Date(),
-    parentId,
+    parentId: parentId ?? null,
     childComments: [],
   });
 

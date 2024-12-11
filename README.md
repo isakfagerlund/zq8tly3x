@@ -33,6 +33,7 @@ npm run build
 - Dexie
   - Simple wrapper of indexedDB
   - Suitable for this project since external synchronization is not required
+  - In a real-world application, we would typically sync data with a server to ensure consistency across devices or sessions. The sync could be when the app goes online after being offline or immediately following a mutation
 - Vitest
   - Reuses the Vite configuration, avoiding the need for duplicated configs
 - Tailwind

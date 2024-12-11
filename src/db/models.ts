@@ -2,8 +2,7 @@ interface Comment {
   id: number;
   content: string;
   createdAt: Date;
-  updatedAt: Date;
-  parentId?: number;
+  parentId: number | null;
   childComments: Comment[];
 }
 

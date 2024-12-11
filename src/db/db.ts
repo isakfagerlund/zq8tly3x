@@ -6,7 +6,7 @@ const db = new Dexie('CommentsDB') as Dexie & {
 };
 
 db.version(1).stores({
-  comments: '++id, content, createdAt, updatedAt, childComments',
+  comments: '++id, content, createdAt, parentId, childComments',
 });
 
 export { db };

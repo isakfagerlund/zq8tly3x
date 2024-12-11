@@ -33,7 +33,7 @@ npm run build
 - Dexie
   - Simple wrapper of indexedDB
   - Suitable for this project since external synchronization is not required
-  - In a real-world application, we would typically sync data with a server to ensure consistency across devices or sessions. The sync could be when the app goes online after being offline or immediately following a mutation
+  - In a real-world application, we would typically sync data with a server to ensure consistency across devices or sessions. The sync could happen when the app goes online or immediately following a mutation
 - Vitest
   - Reuses the Vite configuration, avoiding the need for duplicated configs
 - Tailwind
@@ -41,10 +41,9 @@ npm run build
   - For production projects, I would pair it with options [shad/cn](https://ui.shadcn.com/), [Headless UI](https://headlessui.com/) or [Radix UI](https://www.radix-ui.com/primitives) for accessibility and speed.
 
 # Future improvements
-- Only have one visible Input Component. For example using a context to keep track of the current clicked comment.
 - Error handling for DB queries. Currently it's assumed it will work.
 - Confirmation when deleting a Comment
 - Toast notifications for activites
 - UX needs some improvement. If this was for a real product I would go the direction of Notion comments. Where a child comment can not have children, only siblings.
 - Using React Memo to check re-renders. This should only be used when perfomance is noticibly bad. Also the new React Compiler solves a lot of these out of the box.
-- Component tests, End 2 End or Integration tests.
+- Component tests, End2End or Integration tests. Vitest has a new browser mode using Playwrite that would be a good option to reuse config.

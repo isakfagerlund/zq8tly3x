@@ -1,12 +1,25 @@
-# Comment Component
+# Comments Component
 
-### Steps to run project
+### Quick Start
 
-Development: `npm run dev`
+Install Packages
+```
+npm install
+```
+Run development server
+```
+npm run dev
+```
 
-Test: `npm run test`
+Run tests
+```
+npm run test
+```
 
-Build: `npm run build`
+Build Project
+```
+npm run build
+```
 
 # Requirements
 - The component displays a list of comments
@@ -16,6 +29,19 @@ Build: `npm run build`
 - Comments are persisted: Restarting/ refreshing the app does not clear comments
 - Bonus points if the component works across multiple tabs without refreshing the page
 
-# Decisions & future improvements
+# Decisions
+- Dexie
+  - Simple wrapper of indexedDB
+  - Suitable for this project since external synchronization is not required
+- Vitest
+  - Reuses the Vite configuration, avoiding the need for duplicated configs
+- Tailwind
+  - Easy and fast to work with
+  - For production projects, I would pair it with options [shad/cn](https://ui.shadcn.com/), [Headless UI](https://headlessui.com/) or [Radix UI](https://www.radix-ui.com/primitives) for accessibility and speed.
+
+# Future improvements
 - Only have one visible Input Component. For example using a context to keep track of the current clicked comment.
-- 
+- Error handling for DB queries. Currently it's assumed it will work.
+- Confirmation when deleting a Comment
+- Toast notifications for activites
+- UX needs some improvement. If this was for a real product I would go the direction of Notion comments. Where a child comment can not have children, only siblings.

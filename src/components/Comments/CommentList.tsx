@@ -1,6 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 
-import { getCommentsWithChildren } from '../queries/comments';
+import { getCommentsWithChildren } from '../../queries/comments';
 import { CommentItem } from './CommentItem';
 
 export function CommentList() {

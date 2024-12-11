@@ -1,4 +1,4 @@
-import { Comments } from './components/Comments';
+import { Comments } from './components/Comments/Comments';
 
 function App() {
   return (

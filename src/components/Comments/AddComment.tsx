@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { addComment } from '../queries/comments';
+import { addComment } from '../../queries/comments';
 
 export function AddComment({ parentId }: { parentId?: number }) {
   const [newComment, setNewComment] = useState('');

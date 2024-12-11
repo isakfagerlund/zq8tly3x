@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Comment } from '../db/models';
+import { Comment } from '../../db/models';
 import { MessageSquareText, TrashIcon } from 'lucide-react';
-import { deleteComment } from '../queries/comments';
+import { deleteComment } from '../../queries/comments';
 import { AddComment } from './AddComment';
 
 export function CommentItem({ comment }: { comment: Comment }) {

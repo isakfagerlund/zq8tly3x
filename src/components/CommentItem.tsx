@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Comment } from '../db/model';
+import { Comment } from '../db/models';
 import { MessageSquareText, TrashIcon } from 'lucide-react';
 import { deleteComment } from '../queries/comments';
 import { AddComment } from './AddComment';

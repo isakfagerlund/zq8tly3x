@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import { buildCommentTree } from '../buildCommentTree';
-import { Comment } from '../../db/model';
+import { Comment } from '../../db/models';
 
 const commentTestData = [
   {

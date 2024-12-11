@@ -15,3 +15,7 @@ Build: `npm run build`
 - Comments can be nested: The user can comment on another comment
 - Comments are persisted: Restarting/ refreshing the app does not clear comments
 - Bonus points if the component works across multiple tabs without refreshing the page
+
+# Decisions & future improvements
+- Only have one visible Input Component. For example using a context to keep track of the current clicked comment.
+- 

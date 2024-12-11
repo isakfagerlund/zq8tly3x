@@ -1,4 +1,4 @@
-import { Comment } from '../db/model';
+import { Comment } from '../db/models';
 
 export function buildCommentTree(comments: Comment[]) {
   const commentMap = new Map<number, Comment>();

@@ -1,5 +1,6 @@
 import { db } from '../db/db';
 import { buildCommentTree } from '../utils/buildCommentTree';
+import { prepareCommentTreeForDeletion } from '../utils/prepareCommentTreeForDeletion';
 
 export async function addComment(content: string, parentId?: number) {
   const newComment = await db.comments.add({
@@ -7,6 +8,7 @@ export async function addComment(content: string, parentId?: number) {
     createdAt: new Date(),
     updatedAt: new Date(),
     parentId,
+    childComments: [],
   });
 
   return newComment;
@@ -24,6 +26,9 @@ export async function getCommentsWithChildren() {
   return buildCommentTree(comments);
 }
 
-export async function deleteComment(id: number) {
-  await db.comments.delete(id);
+export async function deleteComment(parentId: number) {
+  const comments = await db.comments.toArray();
+  const childrenToDelete = prepareCommentTreeForDeletion(parentId, comments);
+
+  await db.comments.bulkDelete([parentId, ...childrenToDelete]);
 }

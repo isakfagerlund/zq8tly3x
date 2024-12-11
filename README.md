@@ -47,3 +47,4 @@ npm run build
 - Toast notifications for activites
 - UX needs some improvement. If this was for a real product I would go the direction of Notion comments. Where a child comment can not have children, only siblings.
 - Using React Memo to check re-renders. This should only be used when perfomance is noticibly bad. Also the new React Compiler solves a lot of these out of the box.
+- Component tests, End 2 End or Integration tests.

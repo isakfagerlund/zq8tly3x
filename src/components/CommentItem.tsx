@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Comment } from '../db/model';
 import { MessageSquareText, TrashIcon } from 'lucide-react';
 import { deleteComment } from '../queries/comments';
-import { ChildComments } from './ChildComments';
+import { AddComment } from './AddComment';
 
 export function CommentItem({ comment }: { comment: Comment }) {
   const [showChildComments, setShowChildComments] = useState(false);
@@ -27,11 +27,13 @@ export function CommentItem({ comment }: { comment: Comment }) {
           </button>
         </div>
       </div>
-      {showChildComments ? (
-        <ChildComments
-          childComments={comment.childComments}
-          parentId={comment.id}
-        />
+      {showChildComments && comment.childComments ? (
+        <div className="flex flex-col gap-4 mx-4">
+          {comment.childComments.map((c) => (
+            <CommentItem key={c.id} comment={c} />
+          ))}
+          <AddComment parentId={comment.id} />
+        </div>
       ) : null}
     </>
   );

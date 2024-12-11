@@ -4,7 +4,7 @@ interface Comment {
   createdAt: Date;
   updatedAt: Date;
   parentId?: number;
-  childComments?: Comment[];
+  childComments: Comment[];
 }
 
 export type { Comment };

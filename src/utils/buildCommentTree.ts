@@ -1,7 +1,7 @@
 import { Comment } from '../db/model';
 
 export function buildCommentTree(comments: Comment[]) {
-  const commentMap = new Map<number, Comment & { childComments?: Comment[] }>();
+  const commentMap = new Map<number, Comment>();
 
   for (const comment of comments) {
     commentMap.set(comment.id, { ...comment, childComments: [] });
@@ -11,12 +11,14 @@ export function buildCommentTree(comments: Comment[]) {
 
   for (const comment of comments) {
     if (comment.parentId) {
-      // Get the actual parent from map
       const parent = commentMap.get(comment.parentId);
 
-      // Check if parent still exists
       if (parent) {
-        parent!.childComments!.push(commentMap.get(comment.id)!);
+        const childCommentToAdd = commentMap.get(comment.id);
+
+        if (childCommentToAdd) {
+          parent.childComments.push(childCommentToAdd);
+        }
       }
     } else {
       combinedComments.push(commentMap.get(comment.id)!);

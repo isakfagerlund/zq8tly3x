@@ -1,24 +1,20 @@
-import { useState } from 'react';
 import { Comment } from '../../db/models';
-import { MessageSquareText, TrashIcon } from 'lucide-react';
+import { TrashIcon } from 'lucide-react';
 import { deleteComment } from '../../queries/comments';
+import { useState } from 'react';
 import { AddComment } from './AddComment';
 
 export function CommentItem({ comment }: { comment: Comment }) {
-  const [showChildComments, setShowChildComments] = useState(false);
+  const [showAddNewComment, setShowAddNewComment] = useState(false);
 
   return (
     <>
-      <div className="border p-4 rounded-lg min-h-[50px] flex justify-between items-center group">
+      <div
+        onClick={() => setShowAddNewComment(!showAddNewComment)}
+        className="cursor-pointer border p-4 mb-4 rounded-lg min-h-[50px] flex justify-between items-center hover:bg-zinc-100 transition-colors group"
+      >
         <p key={comment.id}>{comment.content}</p>
         <div className="flex gap-2">
-          <button
-            onClick={() => setShowChildComments(!showChildComments)}
-            className="border-zinc-200 flex gap-1 items-center rounded p-1 opacity-0 group-hover:opacity-100 transition-opacity group"
-          >
-            <span>{comment?.childComments?.length}</span>
-            <MessageSquareText className="size-4 transition-opacity" />
-          </button>
           <button className="border-zinc-200 rounded p-1 opacity-0 group-hover:opacity-100 transition-opacity group">
             <TrashIcon
               onClick={() => deleteComment(comment.id)}
@@ -27,12 +23,17 @@ export function CommentItem({ comment }: { comment: Comment }) {
           </button>
         </div>
       </div>
-      {showChildComments && comment.childComments ? (
-        <div className="flex flex-col gap-4 mx-4">
+      {showAddNewComment && (
+        <AddComment
+          parentId={comment.id}
+          handleClose={() => setShowAddNewComment(false)}
+        />
+      )}
+      {comment.childComments ? (
+        <div className="flex flex-col ml-8 justify-between">
           {comment.childComments.map((c) => (
             <CommentItem key={c.id} comment={c} />
           ))}
-          <AddComment parentId={comment.id} />
         </div>
       ) : null}
     </>

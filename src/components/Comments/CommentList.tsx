@@ -7,7 +7,7 @@ export function CommentList() {
   const comments = useLiveQuery(() => getCommentsWithChildren());
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col">
       {comments?.map((comment) => (
         <CommentItem key={comment.id} comment={comment} />
       ))}

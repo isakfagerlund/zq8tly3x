@@ -1,7 +1,13 @@
 import { FormEvent, useState } from 'react';
 import { addComment } from '../../queries/comments';
 
-export function AddComment({ parentId }: { parentId?: number }) {
+export function AddComment({
+  parentId,
+  handleClose,
+}: {
+  parentId?: number;
+  handleClose?: () => void;
+}) {
   const [newComment, setNewComment] = useState('');
 
   const handleOnClick = async (e: FormEvent) => {
@@ -9,10 +15,14 @@ export function AddComment({ parentId }: { parentId?: number }) {
 
     await addComment(newComment, parentId);
     setNewComment('');
+
+    if (handleClose) {
+      handleClose();
+    }
   };
 
   return (
-    <form onSubmit={handleOnClick} className="flex flex-wrap w-full gap-2">
+    <form onSubmit={handleOnClick} className="flex flex-wrap w-full gap-2 mb-4">
       <textarea
         className="border border-zinc-800 py-2 px-4 rounded-lg w-full"
         value={newComment}
